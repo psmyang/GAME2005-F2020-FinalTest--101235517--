@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    public float JumpForce;
+    public float MoveSpeed;
+
     public Transform bulletSpawn;
     public GameObject bullet;
     public int fireRate;
@@ -97,6 +100,17 @@ public class PlayerBehaviour : MonoBehaviour
     private void GroundCheck()
     {
         isGrounded = cube.isGrounded;
+    }
+
+    private void _Jump()
+    {
+
+        body.velocity = new Vector3(Input.GetAxis("Horizontal") * MoveSpeed, body.velocity.y, Input.GetAxis("Vertical") * MoveSpeed);
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            body.velocity = new Vector3(body.velocity.x, JumpForce, body.velocity.z);
+        }
     }
 
 }
